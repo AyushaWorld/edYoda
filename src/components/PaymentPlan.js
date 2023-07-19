@@ -11,15 +11,24 @@ function PaymentPlan() {
 
   const [memberShip, setMemberShip] = useState(0);
   const [flag, setFlag] = useState(true)
-  const countHandler = (no,fla) =>{
-    if(fla){
-      setMemberShip(no+memberShip)
+
+
+  const countHandler = (event) => {
+    // console.log(event,"---------------rtr");
+    if(event){
+      setMemberShip(event)
       setFlag(!flag)
+
     }else{
       setMemberShip(0)
       setFlag(!flag)
     }
   }
+
+  const paymentSubmitHandler = () =>{
+    alert(`We've confirmed your ₹ ${memberShip} payment. can you want to continue.`)
+  }
+
   return (
     <Fragment>
       <Navbar />
@@ -68,7 +77,7 @@ function PaymentPlan() {
 
               <div className='input-container'>
                 <div className='text-container'>
-                  <input type="checkbox" id="checkbox" className='option-input'  onClick={()=>countHandler(174,true)}/>
+                  <input type="checkbox" id="checkbox" className='option-input' value="174" checked={memberShip === "174"}  onClick={(e)=>countHandler(e.target.value,flag)}/>
                   <span className='text-field'>12 Months Subscription </span>
                 </div>
                 <div className='right-text-container'>
@@ -79,7 +88,7 @@ function PaymentPlan() {
 
               <div className='input-container'>
                 <div className='text-container'>
-                <input type="checkbox" id="checkbox" className='option-input' onClick={()=>countHandler(149,true)}/>
+                <input type="checkbox" id="checkbox" className='option-input' value="149" checked={memberShip === "149"} onClick={(e)=>countHandler(e.target.value,flag)}/>
                 <span className='text-field'>6 Months Subscription </span>
                 </div>
                 <div className='right-text-container'>
@@ -90,7 +99,7 @@ function PaymentPlan() {
 
               <div className='input-container'>
               <div className='text-container'>
-                <input type="checkbox" id="checkbox" className='option-input' onClick={()=>countHandler(99,true)}/>
+                <input type="checkbox" id="checkbox" className='option-input' value="99" checked={memberShip === "99"} onClick={(e)=>countHandler(e.target.value,flag)}/>
                 <span className='text-field'>3 Months Subscription </span>
                 </div>
                 <div className='right-text-container'>
@@ -124,7 +133,7 @@ function PaymentPlan() {
 
               <div className='button-container'>
                 <button className='secondary-button'>Cancel</button>
-                <button className='primery-button'>proceed to pay</button>
+                <button className='primery-button' onClick={paymentSubmitHandler}>proceed to pay</button>
 
               </div>
 
